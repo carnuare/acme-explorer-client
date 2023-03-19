@@ -39,7 +39,7 @@
     <div class="form-group has-danger">
       <label for="password" class="form-control-label">Password:</label>
       <input formControlName="password" type="password" class="form-control" 
-        id="password" name="password">
+        id="password" name="password" minlength="8">
     </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">
@@ -54,5 +54,5 @@
   </div>
 </div>
 
- <!-- TODO: change this into a component-->
- <div class="text-danger">{{errorMessage}}</div>
+<div *ngIf="registerSuccess" class="text-success">{{registerSuccess}}</div>
+<div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>

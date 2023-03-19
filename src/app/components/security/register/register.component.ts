@@ -13,6 +13,7 @@ export class RegisterComponent {
 
   registrationForm: FormGroup;
   errorMessage: string;
+  registerSuccess: string;
   roleList = ['administrator', 'explorer', 'manager', 'sponsor'];
 
   constructor(private authService: AuthService,
@@ -36,7 +37,7 @@ export class RegisterComponent {
     this.authService.registerUser(this.registrationForm.value)
       .then(res => {
         console.log(res);
-        this.errorMessage = 'Actor successfully registered';
+        this.registerSuccess = 'Actor successfully registered, navigate to login page';
       }, error => {
         console.log(error);
         this.errorMessage = error;
