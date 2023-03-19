@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent {
   email: string;
+  token: string;
   errorMessage: string;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -20,6 +21,7 @@ export class LoginComponent {
     this.authService.logout()
       .then(_ => {
         this.email = null;
+        this.token = null;
       }).catch(error => {
         console.log(error);
         this.errorMessage = error;
@@ -32,11 +34,15 @@ export class LoginComponent {
     this.authService.login(email, password).then(data => {
       form.reset();
       this.email = email;
-      this.errorMessage = data;
+      this.token = data;
     }).catch((error) => {
       console.log(error);
       this.errorMessage = error;
     });
+  }
+
+  goRegister() {
+    this.router.navigate(['/register']);
   }
 
   onclick() {

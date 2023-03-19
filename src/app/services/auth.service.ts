@@ -43,7 +43,7 @@ export class AuthService implements OnInit {
         .then(_ => {
           this.currentActor = null;
           localStorage.clear();
-          resolve();
+          resolve('');
         }).catch(error => {
           reject(error);
         });
@@ -51,12 +51,13 @@ export class AuthService implements OnInit {
   }
 
    login(email: string, password: string) {
-    const url = this.apiBackendUrl + `/v1/login?email=${email}&password=${password}`;
+    const url = this.apiBackendUrl + '/v1/login';
+    const body = { email, password }
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
     return new Promise<any>((resolve, reject) => {
-      this.http.get<Actor>(url).toPromise()
+      this.http.post<Actor>(url, body).toPromise()
         .then(res => {
           if (res) {
             this.currentActor = res;
@@ -104,7 +105,7 @@ export class AuthService implements OnInit {
             }, err => {
               reject(err);
             });
-          resolve();
+          resolve('');
         }).catch(error => {
           reject(error);
         });

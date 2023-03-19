@@ -13,7 +13,7 @@ export class RegisterComponent {
 
   registrationForm: FormGroup;
   errorMessage: string;
-  roleList = ['ADMINISTRATOR', 'CLERK', 'CUSTOMER'];
+  roleList = ['administrator', 'explorer', 'manager', 'sponsor'];
 
   constructor(private authService: AuthService,
       private fb: FormBuilder) {
@@ -28,8 +28,7 @@ export class RegisterComponent {
       password: [''],
       phone: [''],
       address: [''],
-      role: [''],
-      validated: ['true']
+      role: ['']
     });
   }
 

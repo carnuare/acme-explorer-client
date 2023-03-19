@@ -33,9 +33,15 @@
     </div>
   </form>  
 
-  <div class="text-danger">{{errorMessage}}</div>
+  <div *ngIf="token">
+    <textarea class="w-100" value="{{token}}" rows=10></textarea>
+  </div>
+  <div *ngIf="errorMessage" class="text-danger">
+    <span>{{errorMessage}}</span>
+  </div>
 
-  <button  class="btn btn-secondary" (click)="onclick()">Edit Profile</button>
+  <button *ngIf="!email" class="btn btn-secondary" (click)="goRegister()">Register</button>
+  <button *ngIf="email" class="btn btn-secondary" (click)="onclick()">Edit Profile</button>
 
 
   
